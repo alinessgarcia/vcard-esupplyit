@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: #eeeeee;
+  color: #007a1d;
 }
 
 .card {
@@ -17,6 +17,7 @@ body {
   text-align: center;
   max-width: 360px;
   width: 90%;
+  height: 100%;
 }
 
 .avatar {
