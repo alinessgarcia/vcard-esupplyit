@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #00543A, #5F856B);
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,8 +10,8 @@ body {
 }
 
 .card {
-  background: #ffffff;
-  color: #000;
+  background: #1f4237;
+  color: #eeeeee;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -36,7 +36,7 @@ h1 {
 .subtitle {
   margin: 0;
   font-size: 1rem;
-  color: #555;
+  color: #eeeeee;
 }
 
 .buttons {
@@ -61,10 +61,10 @@ h1 {
 }
 
 .save {
-  background: #455a64;
+  background: #007a1d;
   margin-top: 1rem;
 }
 
 .save:hover {
-  background: #37474f;
+  background: #00380d;
 }
