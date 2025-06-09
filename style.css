@@ -1,70 +1,97 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eeeeee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: #007a1d;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #007a1d;
 }
 
 .card {
-  background: #eeeeee;
-  color: #007a1d;
-  padding: 2rem;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 360px;
-  width: 90%;
-  height: 100%;
+    background: #eeeeee;
+    color: #007a1d;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 360px;
+    width: 90%;
+    height: 100%; /* Garante que o card ocupe a altura total do body (que é 100vh) */
+
+    /* --- Flexbox para distribuir o conteúdo verticalmente --- */
+    display: flex;
+    flex-direction: column; /* Empilha os filhos verticalmente */
+    /* justify-content: space-between; /* Distribui espaço entre os filhos diretos */
+    /* --- Fim Flexbox --- */
+}
+
+/* Novo estilo para o grupo do topo */
+.top-section {
+    /* Os elementos internos (avatar, h1, subtitle) já se empilham naturalmente */
+    /* Os margins existentes neles controlam o espaçamento interno deste grupo */
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem; /* Espaço abaixo da foto */
 }
 
 h1 {
-  margin: 0.5rem 0 0.2rem;
-  font-size: 1.5rem;
+    margin: 0.5rem 0 0.2rem; /* Espaço acima e abaixo do nome */
+    font-size: 1.5rem;
 }
 
 .subtitle {
-  margin: 0;
-  font-size: 1rem;
-  color: #007a1d;
+    margin: 0; /* Remove margin padrão do parágrafo */
+    font-size: 1rem;
+    color: #007a1d; /* Corrigido para ser visível no fundo #eeeeee */
 }
 
 .buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espaçamento entre os botões */
+    margin: 1.5rem 0; /* Espaço acima e abaixo do bloco de botões */
+    /* Com margin-top: auto no .bottom-section, este margin inferior cria espaço entre buttons e bottom-section */
 }
 
 .btn {
-  text-decoration: none;
-  background: #009826;
-  color: white;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  transition: background 0.3s;
-  font-weight: bold;
+    text-decoration: none;
+    background: #009826;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s;
+    font-weight: bold;
 }
 
 .btn:hover {
-  background: #007a1d;
+    background: #007a1d;
+}
+
+/* Novo estilo para o grupo do rodapé */
+.bottom-section {
+    /* --- Flexbox para empilhar o website e o botão Salvar --- */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espaçamento entre o website e o botão Salvar (mesmo dos botões) */
+    /* --- Fim Flexbox --- */
+
+    margin-top: auto; /* <-- ESSA É A CHAVE! Empurra este elemento e tudo abaixo dele para o final do container flex (.card) */
 }
 
 .save {
-  background: #009826;
-  margin-top: 1rem;
+    background: #009826;
+    /* margin-top: 1rem; /* Removido, pois o gap no .bottom-section controla o espaçamento */
 }
 
 .save:hover {
-  background: #007a1d;
+    background: #007a1d;
 }
+
+/* Opcional: Adicionar media query para telas menores se necessário */
+/* @media (max-width: 480px) { ... } */
