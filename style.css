@@ -1,40 +1,252 @@
-/* Ajuste do container principal (remove scroll) */
+/* Paleta de Cores (baseada no exemplo da Cláudia Alves, mas com suas cores) */
+:root {
+    --primary-green: #4A876E; /* Verde principal (PicPay) */
+    --light-green: #358362; /* Verde mais escuro para hover */
+    --card-bg: #eeeeee; /* Fundo cinza claro do card */
+    --text-dark: #333333;
+    --text-light: #F0F0F0;
+    --white: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--card-bg); /* Fundo da página */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza o card na vertical em telas maiores */
+    min-height: 100vh;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    overflow-y: auto; /* Permitir rolagem vertical se o conteúdo for muito grande */
+}
+
 .main-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    height: 100vh; /* Ocupa 100% da tela SEM scroll */
-    overflow: hidden; /* Garante que nada ultrapasse */
-    background-color: var(--card-bg);
+    max-width: 400px; /* Largura máxima do card */
+    min-height: 100vh; /* Ocupa a altura total da tela em mobile */
+    height: auto; /* Altura automática em desktop */
+    background-color: var(--card-bg); /* Fundo do card */
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    border-radius: 0; /* Remover borda arredondada em mobile */
+    box-shadow: none; /* Remover sombra em mobile */
 }
 
-/* Avatar maior e margem ajustada */
+/* --- Seção de Background Superior (onda verde) --- */
+.top-background-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Reduzi ainda mais a altura da onda superior */
+    background-color: var(--primary-green); /* Cor principal da onda */
+    background-image: linear-gradient(to bottom, var(--primary-green), var(--light-green)); /* Gradiente */
+    z-index: 1; /* Fica atrás do conteúdo */
+    border-bottom-left-radius: 40% 10%; /* Ajuste para uma onda suave */
+    border-bottom-right-radius: 40% 10%;
+}
+
+/* --- Conteúdo Principal do Cartão --- */
+.card-content {
+    position: relative;
+    z-index: 2; /* Conteúdo fica por cima da onda */
+    width: 90%;
+    padding: 0; /* Remover padding inicial aqui, vamos controlar individualmente */
+    display: flex;
+    flex-direction: column; /* Empilha os filhos diretos verticalmente */
+    align-items: center;
+    margin-top: 50px; /* Ajustei a margem superior para o conteúdo, deixando o avatar sobrepor a onda */
+    /* Adiciona flex-grow para que o card-content ocupe o espaço restante no main-container */
+    flex-grow: 1;
+    /* Adiciona justify-content para distribuir o espaço entre os filhos diretos */
+    /* justify-content: space-between; /* Removido para usar margin-top: auto no footer-hint */
+}
+
+.header-section {
+    text-align: center;
+    /* margin-bottom: 0.5rem; /* Removido, o margin-top no profile-area cuidará do espaço */
+    padding-top: 1rem; /* Um pouco de padding no topo para o nome */
+    color: var(--primary-green);
+    position: relative;
+    z-index: 4; /* Acima do avatar */
+    /* --- Adicionado: Empurra o header-section para baixo em relação ao elemento anterior (.profile-area) --- */
+    /* Nota: No HTML, profile-area pode vir depois, mas visualmente e com z-index, header-section está acima/depois */
+    /* Se o HTML tiver header-section ANTES de profile-area, este margin-top criará espaço entre eles */
+    margin-top: 1rem; /* Ajuste este valor para controlar o espaço entre a foto e o texto */
+    /* --- Fim Adicionado --- */
+}
+
+/* Escondendo o company-icon, pois não está na sua imagem atual e pode ser adicionado depois se quiser */
+.company-icon {
+    display: none;
+}
+
+h1 {
+    margin: 0; /* Remover margens para controle preciso */
+    font-size: 1.8rem;
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.subtitle {
+    margin: 0; /* Remover margens */
+    font-size: 1rem;
+    color: var(--light-green); /* Corrigido para ser visível */
+    font-weight: 400;
+}
+
 .profile-area {
-    margin-top: -120px; /* Ajuste para a foto invadir a seção verde */
-    margin-bottom: 1rem; /* Espaço abaixo da foto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: -100px; /* Puxar a imagem do Marcos para cima, invadindo a seção verde */
+    position: relative;
+    z-index: 3; /* O avatar deve ficar acima da seção de background */
+    /* --- Adicionado: Espaço ABAIXO da área do perfil (avatar) --- */
+    margin-bottom: 1.5rem; /* Ajuste este valor para controlar o espaço entre a foto e a descrição/botões */
+    /* --- Fim Adicionado --- */
 }
 
 .avatar {
-    width: 150px; /* Aumentado */
-    height: 150px;
-    border: 5px solid var(--card-bg);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--card-bg); /* Borda na cor de fundo do cartão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* margin-bottom: 1rem; /* Removido, o margin-bottom no .profile-area cuida do espaço */
 }
 
-/* Botões mais espaçados */
+.description-text {
+    background-color: var(--white); /* Fundo branco para a descrição */
+    padding: 1.2rem; /* Reduzi o padding para compactar */
+    border-radius: 15px;
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 1rem 0 1.5rem 0; /* Margens: topo, lados, baixo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    width: calc(100% - 2.4rem); /* Largura para preencher e considerar o padding */
+    max-width: 320px; /* Largura máxima para o bloco de texto */
+}
+
+.description-text p {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600; /* Semi Bold */
+}
+
 .buttons-grid {
-    gap: 15px; /* Aumentado */
-    padding: 0 1rem; /* Adicionado padding lateral */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Espaçamento entre os botões */
+    width: 100%;
+    max-width: 320px; /* Limita a largura da grade de botões */
+    margin-bottom: 1rem; /* Espaçamento para o rodapé */
 }
 
 .contact-btn {
-    padding: 1rem 0.5rem; /* Mais alto */
+    text-decoration: none;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 0.8rem 0.5rem; /* Padding ajustado */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem; /* Ajustado tamanho da fonte */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-/* Header-section movido para baixo da foto (no HTML) */
-.header-section {
-    margin-top: 0; /* Remove margem superior anterior */
-    margin-bottom: 1rem; /* Espaço entre nome e descrição */
+.contact-btn i {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem; /* Reduzi a margem do ícone para o texto */
+    color: var(--white); /* Ícones brancos para contraste */
+}
+
+.contact-btn span {
+    font-size: 0.75rem; /* Ajustei o tamanho do texto do botão */
+    color: var(--white);
+}
+
+.contact-btn:hover {
+    background-color: var(--light-green);
+    transform: translateY(-2px); /* Efeito suave ao passar o mouse */
+}
+
+/* Ocultando o botão de salvar contato por enquanto, se não for mais usado como um botão separado */
+.save-contact-btn {
+    grid-column: 1 / -1; /* Ocupa as duas colunas */
+    background-color: var(--light-green); /* Cor diferente */
+}
+
+.save-contact-btn i {
+    color: var(--white);
+}
+
+.save-contact-btn:hover {
+    background-color: var(--primary-green);
+}
+
+.footer-hint {
+    color: var(--light-green); /* Cor mais suave para o texto do rodapé */
+    text-align: center;
+    font-size: 0.75rem; /* Tamanho da fonte ajustado */
+    /* margin-top: 0.5rem; /* Removido para usar margin-top: auto */
+    margin-bottom: 1.5rem; /* Margem para o final da tela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px; /* Espaçamento menor entre o ícone e o texto */
+    /* --- Adicionado: Empurra este elemento para o final do container flex (.card-content) --- */
+    margin-top: auto;
+    /* --- Fim Adicionado --- */
+}
+
+.footer-hint i {
+    font-size: 1.3rem; /* Tamanho do ícone ajustado */
+    color: var(--light-green);
+}
+
+/* Responsividade (para telas menores/maiores se necessário) */
+@media (max-width: 350px) {
+    .buttons-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    }
+    .contact-btn {
+        padding: 0.6rem 0.5rem; /* Padding ainda menor */
+    }
+    .contact-btn i {
+        font-size: 1.5rem;
+    }
+    .contact-btn span {
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 600px) {
+    .main-container {
+        border-radius: 16px; /* Borda arredondada em telas maiores */
+        min-height: 0; /* Não ocupa a altura total em desktop */
+        height: auto;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        margin: 2rem auto; /* Centraliza o card em telas maiores */
+    }
+    .top-background-section {
+        height: 180px; /* Um pouco mais de altura em desktop */
+    }
+    .card-content {
+        margin-top: 80px; /* Ajuste para desktop */
+        padding-bottom: 2rem;
+    }
 }
