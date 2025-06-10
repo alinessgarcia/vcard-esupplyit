@@ -1,6 +1,6 @@
 /* Paleta de Cores (baseada no exemplo da Cláudia Alves, mas com suas cores) */
 :root {
-    --primary-green: #009826; /* Verde principal (PicPay) */
+    --primary-green: #4A876E; /* Verde principal (PicPay) */
     --light-green: #007a1d; /* Verde mais escuro para hover */
     --card-bg: #eeeeee; /* Fundo cinza claro do card */
     --text-dark: #333333;
