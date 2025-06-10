@@ -4,7 +4,6 @@
   --light-green: #358362;
   --card-bg: #eeeeee;
   --text-dark: #333333;
-  --text-light: #F0F0F0;
   --white: #FFFFFF;
 }
 
@@ -20,7 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Container principal */
 .main-container {
   position: relative;
   width: 100%;
@@ -35,7 +33,6 @@ body {
   min-height: 100vh;
 }
 
-/* Onda superior */
 .top-background-section {
   position: absolute;
   top: 0;
@@ -48,7 +45,6 @@ body {
   z-index: 1;
 }
 
-/* Conteúdo principal */
 .card-content {
   position: relative;
   z-index: 2;
@@ -56,37 +52,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 170px;
   flex-grow: 1;
 }
 
-/* Cabeçalho com título e subtítulo */
-.header-section {
-  text-align: center;
-  margin-top: 1rem;
-  color: var(--primary-green);
-  z-index: 4;
-}
-
-h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.subtitle {
-  margin: 0.3rem 0 0;
-  font-size: 1rem;
-  color: var(--light-green);
-  font-weight: 400;
-}
-
-/* Área da foto e descrição */
 .profile-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -100px;
   margin-bottom: 1.5rem;
   z-index: 3;
   width: 100%;
@@ -101,6 +74,25 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.name-subtitle {
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+.name-subtitle h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.name-subtitle p {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  color: var(--light-green);
+  font-weight: 400;
+}
+
 .description-text {
   background-color: var(--white);
   padding: 1.2rem;
@@ -109,7 +101,7 @@ h1 {
   color: var(--text-dark);
   font-size: 0.9rem;
   line-height: 1.4;
-  margin: 1rem 0 1.5rem;
+  margin: 1.2rem 0 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: calc(100% - 2.4rem);
   max-width: 320px;
@@ -120,14 +112,13 @@ h1 {
   font-weight: 600;
 }
 
-/* Botões */
 .buttons-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: 100%;
   max-width: 320px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .contact-btn {
@@ -162,34 +153,19 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* Botão especial para salvar contato */
 .save-contact-btn {
   grid-column: 1 / -1;
   background-color: var(--light-green);
 }
+
 .save-contact-btn:hover {
   background-color: var(--primary-green);
 }
 
-/* Rodapé */
 .footer-hint {
-  color: var(--light-green);
-  text-align: center;
-  font-size: 0.75rem;
-  margin-bottom: 1.5rem;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  display: none;
 }
 
-.footer-hint i {
-  font-size: 1.3rem;
-  color: var(--light-green);
-}
-
-/* Responsividade */
 @media (max-width: 350px) {
   .buttons-grid {
     grid-template-columns: 1fr;
@@ -216,7 +192,7 @@ h1 {
     height: 180px;
   }
   .card-content {
-    margin-top: 80px;
+    margin-top: 100px;
     padding-bottom: 2rem;
   }
 }
