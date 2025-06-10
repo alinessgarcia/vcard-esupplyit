@@ -14,8 +14,7 @@ body {
     background-color: var(--card-bg); /* Fundo da página */
     display: flex;
     justify-content: center;
-    /* align-items: flex-start; Mudei para center para centralizar o card na vertical em telas maiores */
-    align-items: center; 
+    align-items: center; /* Centraliza o card na vertical em telas maiores */
     min-height: 100vh;
     color: var(--text-dark);
     overflow-x: hidden;
@@ -47,9 +46,6 @@ body {
     background-color: var(--primary-green); /* Cor principal da onda */
     background-image: linear-gradient(to bottom, var(--primary-green), var(--light-green)); /* Gradiente */
     z-index: 1; /* Fica atrás do conteúdo */
-    /* Para a forma ondulada no topo, podemos usar um clip-path ou bordas */
-    /* Para replicar o estilo da imagem, um pseudo-elemento ou SVG seria mais preciso */
-    /* Por simplicidade, vou manter a ideia de um retângulo superior verde que o avatar "invade" */
     border-bottom-left-radius: 40% 10%; /* Ajuste para uma onda suave */
     border-bottom-right-radius: 40% 10%;
 }
@@ -61,18 +57,27 @@ body {
     width: 90%;
     padding: 0; /* Remover padding inicial aqui, vamos controlar individualmente */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Empilha os filhos diretos verticalmente */
     align-items: center;
     margin-top: 50px; /* Ajustei a margem superior para o conteúdo, deixando o avatar sobrepor a onda */
+    /* Adiciona flex-grow para que o card-content ocupe o espaço restante no main-container */
+    flex-grow: 1;
+    /* Adiciona justify-content para distribuir o espaço entre os filhos diretos */
+    /* justify-content: space-between; /* Removido para usar margin-top: auto no footer-hint */
 }
 
 .header-section {
     text-align: center;
-    margin-bottom: 0.5rem;
+    /* margin-bottom: 0.5rem; /* Removido, o margin-top no profile-area cuidará do espaço */
     padding-top: 1rem; /* Um pouco de padding no topo para o nome */
     color: var(--primary-green);
-    position: relative; /* Para posicionar o nome e subtítulo */
+    position: relative;
     z-index: 4; /* Acima do avatar */
+    /* --- Adicionado: Empurra o header-section para baixo em relação ao elemento anterior (.profile-area) --- */
+    /* Nota: No HTML, profile-area pode vir depois, mas visualmente e com z-index, header-section está acima/depois */
+    /* Se o HTML tiver header-section ANTES de profile-area, este margin-top criará espaço entre eles */
+    margin-top: 1rem; /* Ajuste este valor para controlar o espaço entre a foto e o texto */
+    /* --- Fim Adicionado --- */
 }
 
 /* Escondendo o company-icon, pois não está na sua imagem atual e pode ser adicionado depois se quiser */
@@ -90,7 +95,7 @@ h1 {
 .subtitle {
     margin: 0; /* Remover margens */
     font-size: 1rem;
-    color: var(--light-green);
+    color: var(--light-green); /* Corrigido para ser visível */
     font-weight: 400;
 }
 
@@ -102,6 +107,9 @@ h1 {
     margin-top: -100px; /* Puxar a imagem do Marcos para cima, invadindo a seção verde */
     position: relative;
     z-index: 3; /* O avatar deve ficar acima da seção de background */
+    /* --- Adicionado: Espaço ABAIXO da área do perfil (avatar) --- */
+    margin-bottom: 1.5rem; /* Ajuste este valor para controlar o espaço entre a foto e a descrição/botões */
+    /* --- Fim Adicionado --- */
 }
 
 .avatar {
@@ -111,7 +119,7 @@ h1 {
     object-fit: cover;
     border: 5px solid var(--card-bg); /* Borda na cor de fundo do cartão */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1rem; /* Espaçamento da imagem para a descrição */
+    /* margin-bottom: 1rem; /* Removido, o margin-bottom no .profile-area cuida do espaço */
 }
 
 .description-text {
@@ -194,12 +202,15 @@ h1 {
     color: var(--light-green); /* Cor mais suave para o texto do rodapé */
     text-align: center;
     font-size: 0.75rem; /* Tamanho da fonte ajustado */
-    margin-top: 0.5rem; /* Margem reduzida */
+    /* margin-top: 0.5rem; /* Removido para usar margin-top: auto */
     margin-bottom: 1.5rem; /* Margem para o final da tela */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3px; /* Espaçamento menor entre o ícone e o texto */
+    /* --- Adicionado: Empurra este elemento para o final do container flex (.card-content) --- */
+    margin-top: auto;
+    /* --- Fim Adicionado --- */
 }
 
 .footer-hint i {
@@ -229,8 +240,9 @@ h1 {
         min-height: 0; /* Não ocupa a altura total em desktop */
         height: auto;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        margin: 2rem 0; /* Margem para centralizar melhor em desktop */
-    }    .top-background-section {
+        margin: 2rem auto; /* Centraliza o card em telas maiores */
+    }
+    .top-background-section {
         height: 180px; /* Um pouco mais de altura em desktop */
     }
     .card-content {
