@@ -110,12 +110,14 @@ h1 {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Importante para animação suave */
 }
 
+/* ESTILO HOVER (adicione esta parte) */
 .contact-btn:hover {
     background-color: var(--light-green);
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .save-contact-btn {
