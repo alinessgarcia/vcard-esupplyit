@@ -1,97 +1,220 @@
+/* Paleta de Cores (baseada no exemplo da Cláudia Alves) */
+:root {
+    --primary-blue: #3E5A6C; /* Tom mais escuro de azul/cinza */
+    --secondary-blue: #6A8BA0; /* Tom mais claro de azul/cinza */
+    --accent-beige: #E6DED8; /* Bege/rosa claro para detalhes */
+    --text-dark: #333333;
+    --text-light: #F0F0F0;
+    --white: #FFFFFF;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eeeeee;
+    font-family: 'Arial', sans-serif; /* Considere usar uma fonte como 'Montserrat' ou 'Open Sans' para um visual mais moderno */
+    background-color: var(--accent-beige); /* Fundo geral da página */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #007a1d;
+    color: var(--text-dark);
+    overflow: hidden; /* Para evitar scroll indesejado das formas */
 }
 
-.card {
-    background: #eeeeee;
-    color: #007a1d;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 360px;
-    width: 90%;
-    height: 100%; /* Garante que o card ocupe a altura total do body (que é 100vh) */
-
-    /* --- Flexbox para distribuir o conteúdo verticalmente --- */
+.main-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Largura máxima para celulares */
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    background-color: var(--primary-blue); /* Fundo principal do cartão */
     display: flex;
-    flex-direction: column; /* Empilha os filhos verticalmente */
-    /* justify-content: space-between; /* Distribui espaço entre os filhos diretos */
-    /* --- Fim Flexbox --- */
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Para controlar as formas internas */
+    border-radius: 0; /* No celular, geralmente não tem borda arredondada no card */
 }
 
-/* Novo estilo para o grupo do topo */
-.top-section {
-    /* Os elementos internos (avatar, h1, subtitle) já se empilham naturalmente */
-    /* Os margins existentes neles controlam o espaçamento interno deste grupo */
+/* --- Seção de Background com as formas curvas --- */
+.top-background-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%; /* Altura da seção superior */
+    background-color: var(--accent-beige); /* Cor da onda superior */
+    border-bottom-left-radius: 50% 20%; /* Curvatura inferior esquerda */
+    border-bottom-right-radius: 50% 20%; /* Curvatura inferior direita */
+    z-index: 1; /* Garante que fique por baixo do conteúdo */
+    transform: translateY(-20%); /* Ajusta a posição para criar a onda */
+    /* Adicione um pseudo-elemento para a segunda onda, se desejar */
 }
 
-.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem; /* Espaço abaixo da foto */
+/* --- Conteúdo Principal do Cartão --- */
+.card-content {
+    position: relative;
+    z-index: 2; /* Garante que o conteúdo fique acima do background */
+    width: 90%; /* Largura do conteúdo dentro do container */
+    padding: 2rem 0; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-blue); /* Cor do texto no topo */
+}
+
+.company-icon {
+    background-color: var(--primary-blue);
+    width: 60px;
+    height: 60px;
+    border-radius: 10px; /* Para um hexágono visual */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px auto;
+    color: var(--accent-beige);
+    font-size: 2.5rem;
+    position: relative; /* Para a forma hexagonal */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Para um hexágono */
+}
+
+.company-icon i {
+    color: var(--accent-beige);
 }
 
 h1 {
-    margin: 0.5rem 0 0.2rem; /* Espaço acima e abaixo do nome */
-    font-size: 1.5rem;
+    margin: 0.5rem 0 0.2rem;
+    font-size: 1.8rem;
+    color: var(--primary-blue); /* Cor do nome */
 }
 
 .subtitle {
-    margin: 0; /* Remove margin padrão do parágrafo */
+    margin: 0;
     font-size: 1rem;
-    color: #007a1d; /* Corrigido para ser visível no fundo #eeeeee */
+    color: var(--primary-blue); /* Cor do subtítulo */
+    font-weight: normal;
 }
 
-.buttons {
+.profile-area {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; /* Espaçamento entre os botões */
-    margin: 1.5rem 0; /* Espaço acima e abaixo do bloco de botões */
-    /* Com margin-top: auto no .bottom-section, este margin inferior cria espaço entre buttons e bottom-section */
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-.btn {
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent-beige); /* Borda em volta do avatar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.description-text {
+    background-color: var(--accent-beige);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.description-text p {
+    margin: 0;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 15px; /* Espaçamento entre os botões */
+    width: 100%;
+    max-width: 320px; /* Limita a largura da grade de botões */
+    margin-bottom: 2rem;
+}
+
+.contact-btn {
     text-decoration: none;
-    background: #009826;
-    color: white;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    transition: background 0.3s;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background: #007a1d;
-}
-
-/* Novo estilo para o grupo do rodapé */
-.bottom-section {
-    /* --- Flexbox para empilhar o website e o botão Salvar --- */
+    background-color: var(--primary-blue); /* Cor de fundo dos botões */
+    color: var(--white); /* Cor do ícone e texto */
+    padding: 1rem 0.5rem; /* Ajuste o padding para o conteúdo */
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; /* Espaçamento entre o website e o botão Salvar (mesmo dos botões) */
-    /* --- Fim Flexbox --- */
-
-    margin-top: auto; /* <-- ESSA É A CHAVE! Empurra este elemento e tudo abaixo dele para o final do container flex (.card) */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.save {
-    background: #009826;
-    /* margin-top: 1rem; /* Removido, pois o gap no .bottom-section controla o espaçamento */
+.contact-btn i {
+    font-size: 1.8rem; /* Tamanho dos ícones */
+    margin-bottom: 0.5rem;
+    color: var(--accent-beige); /* Cor dos ícones */
 }
 
-.save:hover {
-    background: #007a1d;
+.contact-btn span {
+    font-size: 0.8rem; /* Tamanho do texto abaixo do ícone */
+    color: var(--white);
 }
 
-/* Opcional: Adicionar media query para telas menores se necessário */
-/* @media (max-width: 480px) { ... } */
+.contact-btn:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-3px);
+}
+
+.save-contact-btn {
+    grid-column: 1 / -1; /* Ocupa as duas colunas */
+    background-color: var(--secondary-blue); /* Cor diferente para o botão de salvar */
+    color: var(--white);
+}
+
+.save-contact-btn i {
+    color: var(--white); /* Ícone branco para o botão de salvar */
+}
+
+.save-contact-btn:hover {
+    background-color: var(--primary-blue);
+}
+
+.footer-hint {
+    color: var(--white); /* Cor do texto "Toque nos ícones" */
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-hint i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+/* Responsividade (para telas menores/maiores se necessário) */
+@media (max-width: 350px) {
+    .buttons-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    }
+}
+
+@media (min-width: 600px) {
+    .main-container {
+        border-radius: 16px; /* Borda arredondada em telas maiores */
+        min-height: auto; /* Não ocupa a altura total em desktop */
+        height: auto;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+}
