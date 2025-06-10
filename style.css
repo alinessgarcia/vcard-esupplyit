@@ -213,8 +213,7 @@ h1 {
 @media (min-width: 600px) {
     .main-container {
         border-radius: 16px; /* Borda arredondada em telas maiores */
-        min-height: auto; /* Não ocupa a altura total em desktop */
+        min-height: 0; /* Não ocupa a altura total em desktop */
         height: auto;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-}
+    }}
